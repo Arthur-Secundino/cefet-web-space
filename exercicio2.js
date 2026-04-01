@@ -54,3 +54,26 @@ const imagens = [
     }
   ];
 
+let indiceImagemAtual = 0;
+
+let botaoAnteriorEl = document.querySelector("#anterior");
+botaoAnteriorEl.addEventListener("click", function (){
+  indiceImagemAtual = (indiceImagemAtual - 1 + imagens.length) % imagens.length;
+  trocaImagem();
+});
+
+let botaoProximoEl = document.querySelector("#proximo");
+botaoProximoEl.addEventListener("click", function (){
+  indiceImagemAtual = (indiceImagemAtual + 1) % imagens.length;
+  trocaImagem();
+});
+
+function trocaImagem(){
+  let nomeImagem = imagens[indiceImagemAtual].arquivo;
+  let urlImagem = servidorDasImagens + "/" + nomeImagem;
+  let descricaoImagem = imagens[indiceImagemAtual].descricao;
+
+  let slideEl = document.querySelector("#slide");
+  slideEl.src = urlImagem;
+  slideEl.alt = descricaoImagem;
+}
